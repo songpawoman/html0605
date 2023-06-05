@@ -35,35 +35,14 @@ class Mario extends GameObject {
         //좌측 센서 
         this.sensorArray[0] = new Sensor(this.wrapper, 1, 22, -1, ((this.height - 22)/2));
         
-        //우측센서 
-        this.sensorArray[1]= new Sensor(this.wrapper,1, 22, this.width, ((this.height - 22)/2) );
-
-
         //위쪽 센서
-        this.divTop = document.createElement("div");
-        this.divTop.style.background="red";
-        this.divTop.style.width=22+"px";
-        this.divTop.style.height=1+"px";
-        this.divTop.style.position="absolute"; //wrapper의 자식
-        this.divTop.style.left=((this.width - parseInt(this.divTop.style.width))/2)+"px";
-        this.divTop.style.top=-(parseInt(this.divTop.style.height))+"px";
-        this.wrapper.appendChild(this.divTop);
+        this.sensorArray[1]=new Sensor(this.wrapper, 22, 1,  (this.width -22)/2, -1 );
+
+        //우측센서 
+        this.sensorArray[2]= new Sensor(this.wrapper,1, 22, this.width, ((this.height - 22)/2) );
 
         //아래쪽 센서
-        this.divDown = document.createElement("div");
-        this.divDown.style.background="red";
-        this.divDown.style.width=22+"px";
-        this.divDown.style.height=1+"px";
-        this.divDown.style.position="absolute"; //wrapper의 자식
-        this.divDown.style.left=((this.width - parseInt(this.divDown.style.width))/2)+"px";
-        this.divDown.style.top=(this.y+this.height)+"px";
-        this.wrapper.appendChild(this.divDown);
-
-        //생성된 4개의 센서를 
-        this.sensorArray[0]=this.divLeft; //좌
-        this.sensorArray[1]=this.divUp; //위
-        this.sensorArray[2]=this.divRight; //우
-        this.sensorArray[3]=this.divDown; //아래
+        this.sensorArray[3]= new Sensor(this.wrapper, 22, 1, (this.width - 22)/2, this.height);
     }
     
 
