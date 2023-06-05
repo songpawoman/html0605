@@ -14,10 +14,6 @@ class Mario extends GameObject {
         //나에 대한 초기화 
         this.wrapper; //센서들을 감쌀 div
         this.sensorArray=new Array(4);
-        this.divLeft; //좌측센서 div
-        this.divUp; //위센서 div
-        this.divRight; //우측센서 div
-        this.divDown; //아래센서 div
         
         this.wrapper=document.createElement("div");
         this.wrapper.style.width=this.width+"px";
@@ -37,24 +33,11 @@ class Mario extends GameObject {
         this.wrapper.style.top=this.y+"px";
 
         //좌측 센서 
-        this.divLeft = document.createElement("div");
-        this.divLeft.style.background="red";
-        this.divLeft.style.width=1+"px";
-        this.divLeft.style.height=22+"px";
-        this.divLeft.style.position="absolute"; //wrapper의 자식
-        this.divLeft.style.left=-(parseInt(this.divLeft.style.width))+"px";
-        this.divLeft.style.top=((this.height - parseInt(this.divLeft.style.height))/2)+"px";
-        this.wrapper.appendChild(this.divLeft);
+        this.sensorArray[0] = new Sensor(this.wrapper, 1, 22, -1, ((this.height - 22)/2));
         
         //우측센서 
-        this.divRight = document.createElement("div");
-        this.divRight.style.background="red";
-        this.divRight.style.width=1+"px";
-        this.divRight.style.height=22+"px";
-        this.divRight.style.position="absolute"; //wrapper의 자식
-        this.divRight.style.left=this.width+"px";
-        this.divRight.style.top=((this.height - parseInt(this.divRight.style.height))/2)+"px";
-        this.wrapper.appendChild(this.divRight);
+        this.sensorArray[1]= new Sensor(this.wrapper,1, 22, this.width, ((this.height - 22)/2) );
+
 
         //위쪽 센서
         this.divTop = document.createElement("div");
@@ -76,6 +59,11 @@ class Mario extends GameObject {
         this.divDown.style.top=(this.y+this.height)+"px";
         this.wrapper.appendChild(this.divDown);
 
+        //생성된 4개의 센서를 
+        this.sensorArray[0]=this.divLeft; //좌
+        this.sensorArray[1]=this.divUp; //위
+        this.sensorArray[2]=this.divRight; //우
+        this.sensorArray[3]=this.divDown; //아래
     }
     
 
