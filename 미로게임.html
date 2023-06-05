@@ -64,7 +64,7 @@
             for(let i=0; i<brickArray.length;i++){ //모든 벽돌 수 만큼...
                 
                 //우측센서 충돌검사
-                let result=collisionCheck(mario, brickArray[i]);
+                let result=collisionCheck(mario.sensorArray[2], brickArray[i]);
 
                 if(result){ //마주쳤다면..
                     console.log(i , "번째 벽돌과 닿았어");
@@ -76,7 +76,8 @@
                     //현재 마주친 벽돌의 x 좌표보다, 주인공의 너비만큼
                     //좌측으로 x위치를 설정...
                     mario.x=brickArray[i].x - mario.width;
-
+                    break;
+                    
                     //[벽돌의 우측에 닿으면 ]
                     //우측에 닿았을때는 현재 닿은 벽돌의 x의 좌표값에
                     //벽돌의 width를 더한값을 주인공의 x위치로 설정
@@ -91,6 +92,7 @@
                     //주인공의 y값으로 설정 
                 }  
             }
+
             //주인공이 벽돌과 충돌이 없을 경우
             mario.velX=n;
 

@@ -33,22 +33,44 @@ class Mario extends GameObject {
         this.wrapper.style.top=this.y+"px";
 
         //좌측 센서 
-        this.sensorArray[0] = new Sensor(this.wrapper, 1, 22, -1, ((this.height - 22)/2));
+        this.sensorArray[0] = new Sensor(this.wrapper, 1, 22,       -1, (this.height - 22)/2 );
         
         //위쪽 센서
-        this.sensorArray[1]=new Sensor(this.wrapper, 22, 1,  (this.width -22)/2, -1 );
+        this.sensorArray[1]=new Sensor(this.wrapper, 22, 1,         (this.width -22)/2, -1 );
 
         //우측센서 
-        this.sensorArray[2]= new Sensor(this.wrapper,1, 22, this.width, ((this.height - 22)/2) );
+        this.sensorArray[2]= new Sensor(this.wrapper,1, 22,         this.width, (this.height - 22)/2  );
 
         //아래쪽 센서
-        this.sensorArray[3]= new Sensor(this.wrapper, 22, 1, (this.width - 22)/2, this.height);
+        this.sensorArray[3]= new Sensor(this.wrapper, 22, 1,        (this.width - 22)/2, this.height);
     }
     
+    setSensor(){
+        //모든 센서는 마리오의 x,y 를 기준으로 변경되어야 하니깐...
+        this.sensorArray[0].x=this.x-1; //좌
+        this.sensorArray[1].x=this.x+(this.width -22)/2;//위
+        this.sensorArray[2].x=this.x+this.width;//우측
+        this.sensorArray[3].x=this.x+(this.width - 22)/2;//아래
+
+        this.sensorArray[0].y=this.y+(this.height - 22)/2; //좌
+        this.sensorArray[1].y=this.y-1 //위
+        this.sensorArray[2].y=this.y+(this.height - 22)/2;//우측
+        this.sensorArray[3].y=this.y+this.height; //아래
+
+    }
 
     //부모인 GameObject의 메서드가 마리오에 적용하기
     //엔 무리가 있으므로, 부모의 메서드를 업그레이드하여
     //마리오의 상황에 맞게 코드를 변경한다.. 오버라이딩..
+    tick(){
+        this.x+=this.velX;
+        this.y+=this.velY;        
+
+        //마리오는 자신의 x가 변하면 본인이 보유한 센서의 위치값도
+        //갱신시킬 의무가 있다. 
+        this.setSensor();
+    }
+
     render(){
         this.wrapper.style.left=this.x+"px";
         this.wrapper.style.top=this.y+"px";
