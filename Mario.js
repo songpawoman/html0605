@@ -52,9 +52,29 @@ class Mario extends GameObject {
         this.divRight.style.width=1+"px";
         this.divRight.style.height=22+"px";
         this.divRight.style.position="absolute"; //wrapper의 자식
-        this.divRight.style.left=this.width+parseInt(this.divRight.style.width)+"px";
+        this.divRight.style.left=this.width+"px";
         this.divRight.style.top=((this.height - parseInt(this.divRight.style.height))/2)+"px";
         this.wrapper.appendChild(this.divRight);
+
+        //위쪽 센서
+        this.divTop = document.createElement("div");
+        this.divTop.style.background="red";
+        this.divTop.style.width=22+"px";
+        this.divTop.style.height=1+"px";
+        this.divTop.style.position="absolute"; //wrapper의 자식
+        this.divTop.style.left=((this.width - parseInt(this.divTop.style.width))/2)+"px";
+        this.divTop.style.top=-(parseInt(this.divTop.style.height))+"px";
+        this.wrapper.appendChild(this.divTop);
+
+        //아래쪽 센서
+        this.divDown = document.createElement("div");
+        this.divDown.style.background="red";
+        this.divDown.style.width=22+"px";
+        this.divDown.style.height=1+"px";
+        this.divDown.style.position="absolute"; //wrapper의 자식
+        this.divDown.style.left=((this.width - parseInt(this.divDown.style.width))/2)+"px";
+        this.divDown.style.top=(this.y+this.height)+"px";
+        this.wrapper.appendChild(this.divDown);
 
     }
     
